@@ -1,8 +1,9 @@
 #include <iostream>
+#include <fstream>
 #include "json.h"
 #include "sqlite3.h"
 
-using json = nlohmann::json;
+
 //模式一
 //创建表的sql语句
 
@@ -14,9 +15,16 @@ using json = nlohmann::json;
 
 
 int main() {
-    json j;
-    j['a'] = "hello";
-    std::cout << j['a'] << std::endl;
+    
+    JSONObject j1,j2,j3;
+    j1["table"] = "table name1";
+    j3["name"] = "nb";
+    j2["list"] = j3;
+
+    JSONObject j{j1,j2,j3};
+
+    std::ofstream ofs("test.json");
+    ofs << j;
 
     sqlite3* db;							//数据库结构体
     int rc = sqlite3_open("text.db", &db);	//尝试创建/打开数据库
