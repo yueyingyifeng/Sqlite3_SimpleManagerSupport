@@ -18,6 +18,7 @@ int main() {
     sqlite3* db;
     sqlite3_open("test",&db);
     char* errmsg[0xff];
+    //exec 参数：数据库指针，sql语句，回调函数，传给回调函数的参数，错误信息
     sqlite3_exec(db,"CREATE TABLE t1 IF NOT EXISTS(" \
                              "id integer primary key,"\
                              "name text,"\
