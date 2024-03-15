@@ -1,8 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include "json.h"
+#include "FileManager.h"
 #include "sqlite3.h"
-
 
 //模式一
 //创建表的sql语句
@@ -13,21 +10,20 @@
 //      列1 列类型 是否是主键
 //      列2...
 
+int callback(void* package, int countOfCol, char** items, char** colName){
+
+}
 
 int main() {
-    
-    JSONObject j1,j2,j3;
-    j1["table"] = "table name1";
-    j3["name"] = "nb";
-    j2["list"] = j3;
+    sqlite3* db;
+    sqlite3_open("test",&db);
+    char* errmsg[0xff];
+    sqlite3_exec(db,"CREATE TABLE t1 IF NOT EXISTS(" \
+                             "id integer primary key,"\
+                             "name text,"\
+                             "age integer)",
+                             callback,NULL,errmsg);
 
-    JSONObject j{j1,j2,j3};
-
-    std::ofstream ofs("test.json");
-    ofs << j;
-
-    sqlite3* db;							//数据库结构体
-    int rc = sqlite3_open("text.db", &db);	//尝试创建/打开数据库
-
+    sqlite3_close(db);
     return 0;
 }

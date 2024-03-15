@@ -26,7 +26,19 @@ include_directories(src/IO/include)
 file(GLOB IO
         src/IO/*.cpp)
 
+include_directories(src/Database/include)
+file(GLOB Database
+        src/Database/*.cpp)
 
-add_executable(${ProjectName} ${main} ${IO})
+include_directories(src/Util/include)
+file(GLOB Util
+        src/Util/*.cpp)
+
+include_directories(src/SharedMemory/include)
+file(GLOB SharedMemory
+        src/SharedMemory/*.cpp)
+
+
+add_executable(${ProjectName} ${main} ${Util} ${IO} ${Database}  ${SharedMemory})
 target_link_libraries(${ProjectName} JSON)          
 target_link_libraries(${ProjectName} Sqlite3)

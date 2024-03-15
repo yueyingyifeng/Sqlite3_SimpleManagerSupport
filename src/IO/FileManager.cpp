@@ -37,3 +37,7 @@ bool FileManager::isFileExists()
     ifs.close();
     return true;
 }
+
+bool FileManager::isSettingsFileLegal(const Config config) {
+    return false;
+}

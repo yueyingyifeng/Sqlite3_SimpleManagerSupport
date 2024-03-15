@@ -32,4 +32,7 @@ public:
 const string FileManager::FILENAME_DBSettings {"DatabaseSettings"};
 const string FileManager::FILENAME_Example_DBSettings_ModeSQL {"DatabaseSettings_sample_ModeManual"};
 const string FileManager::FILENAME_Example_DBSettings_ModeManual {"DatabaseSettings_sample_ModeSQL"};
+
+
+
 #endif
