@@ -6,7 +6,7 @@
 #define MANAGERSUPPORT_SQL_H
 #include <iostream>
 #include "sqlite3.h"
-#include "../Util/include/Debug.h"
+#include "../../Util/include/Debug.h"
 
 class SQL {
     static const char* DATABASENAME;

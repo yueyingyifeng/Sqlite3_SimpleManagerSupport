@@ -7,14 +7,14 @@
 #define H_Config
 #include "json.h"
 
-class Config{
+class Settings{
 public:
     enum class Mode{
         SQL
     };
 
-    explicit Config() = delete;
-    explicit Config(const JSONObject& settings) : settings(settings) {
+    explicit Settings() = delete;
+    explicit Settings(const JSONObject& settings) : settings(settings) {
         mode = settings["mode"];
     }
 

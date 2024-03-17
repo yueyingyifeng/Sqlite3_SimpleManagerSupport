@@ -4,7 +4,7 @@
 
 #ifndef MANAGERSUPPORT_DEBUG_H
 #define MANAGERSUPPORT_DEBUG_H
-#include "Colorful.cpp"
+#include "../Colorful.cpp"
 
 class Debug {
 public:

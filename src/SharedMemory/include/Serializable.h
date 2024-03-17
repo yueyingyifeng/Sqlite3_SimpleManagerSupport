@@ -10,6 +10,10 @@ protected:
 public:
 	virtual const char* serialize() = 0;
 	virtual void deserialize(const char* data) = 0;
+
+	template <class T>
+	static T createObject(const char* data,T (*construct)(const char* data));
 };
 
 #endif
+

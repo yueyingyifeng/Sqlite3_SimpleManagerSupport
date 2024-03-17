@@ -2,4 +2,13 @@
 // Created by Administrator on 2024/3/15.
 //
 
-#include "include/DataPackage.h"
+#include "DataPackage.h"
+
+const char *DataPackage::serialize()
+{
+    return nullptr;
+}
+
+void DataPackage::deserialize(const char *data)
+{
+}

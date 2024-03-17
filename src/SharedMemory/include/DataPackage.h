@@ -7,7 +7,11 @@
 #include "Serializable.h"
 class DataPackage
         : public Serializable{
+	bool isInUser;
+public:
 
+	const char* serialize() override;
+	void deserialize(const char* data) override;
 };
 
 

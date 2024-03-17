@@ -1,7 +1,6 @@
-#include "include/Config.h"
-#include "Config.h"
+#include "include/Settings.h"
 
-JSONObject Config::generate_default_DbSettingsJSON_ModeSQL()
+JSONObject Settings::generate_default_DbSettingsJSON_ModeSQL()
 {
     JSONObject  jsonObject;
     jsonObject["mode"] = "SQL";
@@ -13,7 +12,7 @@ JSONObject Config::generate_default_DbSettingsJSON_ModeSQL()
     return jsonObject;
 }
 
-JSONObject Config::generate_default_DbSettingsJSON_ModeManual()
+JSONObject Settings::generate_default_DbSettingsJSON_ModeManual()
 {
     throw  "don't use this method!";
     JSONObject  jsonObject;

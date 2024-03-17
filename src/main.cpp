@@ -1,4 +1,4 @@
-#include "FileManager.h"
+#include "SettingsFileManager.h"
 #include "sqlite3.h"
 
 //模式一

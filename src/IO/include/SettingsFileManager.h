@@ -8,30 +8,29 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "json.h"
-#include "Config.h"
+#include "Settings.h"
 
 using std::string;
 using std::ifstream;
 using std::ofstream;
 
-class FileManager{
+class SettingsFileManager{
 public:
     const static string FILENAME_DBSettings;
     const static string FILENAME_Example_DBSettings_ModeSQL;
     const static string FILENAME_Example_DBSettings_ModeManual;
 
 
-    explicit FileManager();
-    Config readFile();
+    explicit SettingsFileManager();
+    Settings readFile();
     void createDefaultFile();
     bool isFileExists();
-    bool isSettingsFileLegal(const Config config);
+    bool isSettingsFileLegal(const Settings config);
 };
 
-const string FileManager::FILENAME_DBSettings {"DatabaseSettings"};
-const string FileManager::FILENAME_Example_DBSettings_ModeSQL {"DatabaseSettings_sample_ModeManual"};
-const string FileManager::FILENAME_Example_DBSettings_ModeManual {"DatabaseSettings_sample_ModeSQL"};
+const string SettingsFileManager::FILENAME_DBSettings {"DatabaseSettings"};
+const string SettingsFileManager::FILENAME_Example_DBSettings_ModeSQL {"DatabaseSettings_sample_ModeManual"};
+const string SettingsFileManager::FILENAME_Example_DBSettings_ModeManual {"DatabaseSettings_sample_ModeSQL"};
 
 
 

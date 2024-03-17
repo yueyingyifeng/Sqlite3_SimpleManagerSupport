@@ -20,3 +20,9 @@ std::vector<std::string> Serializable::splitString(const char *str, const char *
 
     return result;
 }
+
+template <class T>
+inline T Serializable::createObject(const char* data,T (*construct)(const char* d))
+{
+    return construct(data);
+}
