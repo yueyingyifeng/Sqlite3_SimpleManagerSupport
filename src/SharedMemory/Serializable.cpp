@@ -22,7 +22,8 @@ std::vector<std::string> Serializable::splitString(const char *str, const char *
 }
 
 template <class T>
-inline T Serializable::createObject(const char* data,T (*construct)(const char* d))
+inline T Serializable::createObject(const char *data, T (*construct)(const char *data))
 {
     return construct(data);
 }
+
