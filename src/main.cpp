@@ -1,5 +1,6 @@
 #include "SettingsFileManager.h"
 #include "sqlite3.h"
+#include "Debug.h"
 
 //模式一
 //创建表的sql语句
@@ -9,12 +10,10 @@
 //  表名1
 //      列1 列类型 是否是主键
 //      列2...
-
 int callback(void* package, int countOfCol, char** items, char** colName){
 
 }
-
-int main() {
+void test(){
     sqlite3* db;
     sqlite3_open("test",&db);
     char* errmsg[0xff];
@@ -23,8 +22,60 @@ int main() {
                              "id integer primary key,"\
                              "name text,"\
                              "age integer)",
-                             callback,NULL,errmsg);
+                 callback,NULL,errmsg);
+
+
 
     sqlite3_close(db);
+}
+
+Settings* initSettings(){
+    SettingsFileManager fileManager;
+    Settings* settings;
+    if(fileManager.isFileExists()){
+        if(!fileManager.isSettingsFileLegal(*settings)){
+            Debug::err("file corruption, please edit the default setting file");
+            fileManager.createDefaultFile();
+        }
+        else{
+            settings = new Settings(fileManager.readFile());
+        }
+    }
+    else{
+        fileManager.createDefaultFile();
+        Debug::err(string(
+            string("there is no setting file, please edit the default setting file, then change the name as ") +  string(SettingsFileManager::FILENAME_DBSettings)
+        ).c_str());
+    }
+
+    return settings;
+}
+
+void excuteSQLFromSettings(Settings* setting){
+    if(setting->getMode() == Settings::Mode::SQL){
+        JSONObject sql_array = setting->getSettings()[Settings::filed::SQL];
+        for(auto & it : sql_array)
+            cout << it << endl;
+
+
+    }
+}
+
+void initStep(){
+    Settings* settings;
+    if((settings = initSettings()))
+        excuteSQLFromSettings(settings);
+
+
+}
+
+
+void processesStep(){
+
+}
+
+int main() {
+    initStep();
+    processesStep();
     return 0;
 }

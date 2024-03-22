@@ -16,9 +16,3 @@ public:
 };
 
 #endif
-
-template <class T>
-inline T Serializable::createObject(const char *data, T (*construct)(const char *data))
-{
-    return construct(data);
-}

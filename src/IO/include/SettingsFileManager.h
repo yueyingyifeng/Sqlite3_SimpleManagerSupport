@@ -10,6 +10,7 @@
 #include <string>
 #include "Settings.h"
 
+
 using std::string;
 using std::ifstream;
 using std::ofstream;
@@ -22,15 +23,13 @@ public:
 
 
     explicit SettingsFileManager();
-    Settings readFile();
+    JSONObject readFile();
     void createDefaultFile();
     bool isFileExists();
     bool isSettingsFileLegal(const Settings config);
 };
 
-const string SettingsFileManager::FILENAME_DBSettings {"DatabaseSettings"};
-const string SettingsFileManager::FILENAME_Example_DBSettings_ModeSQL {"DatabaseSettings_sample_ModeManual"};
-const string SettingsFileManager::FILENAME_Example_DBSettings_ModeManual {"DatabaseSettings_sample_ModeSQL"};
+
 
 
 

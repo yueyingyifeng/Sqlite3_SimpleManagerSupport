@@ -1,31 +1,34 @@
 #include "SettingsFileManager.h"
-
+const string SettingsFileManager::FILENAME_DBSettings {"DatabaseSettings.json"};
+const string SettingsFileManager::FILENAME_Example_DBSettings_ModeSQL {"DatabaseSettings_sample_ModeSQL.json"};
+const string SettingsFileManager::FILENAME_Example_DBSettings_ModeManual {"DatabaseSettings_sample_ModeManual.json"};
 SettingsFileManager::SettingsFileManager(){}
 
-Settings SettingsFileManager::readFile()
+JSONObject SettingsFileManager::readFile()
 {
     ifstream ifs(FILENAME_DBSettings);
     JSONObject json;
-    while(ifs.eof())
+    while (ifs.peek() != EOF){
         ifs >> json;
-    Settings configFile(json);
-    ifs.close();
+    }
 
-    return configFile;
+    ifs.close();
+    return json;
 }
 
 void SettingsFileManager::createDefaultFile()
 {
-    JSONObject settings_ModeManual = Settings::generate_default_DbSettingsJSON_ModeManual();
+//    JSONObject settings_ModeManual = Settings::generate_default_DbSettingsJSON_ModeManual();
     JSONObject settings_ModeSQL    = Settings::generate_default_DbSettingsJSON_ModeSQL();
 
-    ofstream ofs(FILENAME_Example_DBSettings_ModeManual);
-    ofs << settings_ModeManual;
-    ofs.close();
+    ofstream ofs1(FILENAME_Example_DBSettings_ModeManual);
 
-    ofs = ofstream(FILENAME_Example_DBSettings_ModeSQL);
-    ofs << settings_ModeSQL;
-    ofs.close();
+//    ofs1 << settings_ModeManual;
+    ofs1.close();
+
+    ofstream ofs2 = ofstream(FILENAME_Example_DBSettings_ModeSQL);
+    ofs2 << settings_ModeSQL;
+    ofs2.close();
 }
 
 bool SettingsFileManager::isFileExists()
@@ -38,7 +41,8 @@ bool SettingsFileManager::isFileExists()
     ifs.close();
     return true;
 }
-
-bool SettingsFileManager::isSettingsFileLegal(const Settings config) {
-    return false;
-}
+//这里有问题，一直返回false
+//bool SettingsFileManager::isSettingsFileLegal(const Settings settings) {
+//    bool t = settings().contains(Settings::filed::MODE);;
+//    return t;
+//}
