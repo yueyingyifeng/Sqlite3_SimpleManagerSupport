@@ -14,6 +14,9 @@ class Package
         int n;
         const char* data;
 public:
+
+        char* errmsg[0xff];
+
     explicit Package(int n, const char* data)
         : n(n), data(data){}
     ~Package(){

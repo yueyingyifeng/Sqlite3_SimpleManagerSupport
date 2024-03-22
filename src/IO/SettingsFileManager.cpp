@@ -41,8 +41,15 @@ bool SettingsFileManager::isFileExists()
     ifs.close();
     return true;
 }
-//这里有问题，一直返回false
-//bool SettingsFileManager::isSettingsFileLegal(const Settings settings) {
-//    bool t = settings().contains(Settings::filed::MODE);;
-//    return t;
-//}
+
+bool SettingsFileManager::isSettingsFileLegal(const JSONObject settings) {
+    if(settings.contains(Settings::filed::MODE) && settings.contains(Settings::filed::SQL)){
+        string m =  settings[Settings::filed::MODE];
+        if(m != string("sql") && m != string("manual"))
+            throw "mode only be 'sql'";// or manual"
+    }
+    else{
+        throw "file corruption, please edit the default setting file";
+    }
+   return true;
+}

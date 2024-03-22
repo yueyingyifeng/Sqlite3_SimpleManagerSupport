@@ -28,7 +28,7 @@ public:
     static JSONObject generate_default_DbSettingsJSON_ModeSQL();
     static JSONObject generate_default_DbSettingsJSON_ModeManual();
 
-    JSONObject getSettings() const{
+    JSONObject getSettings(){
         return settings;
     }
 

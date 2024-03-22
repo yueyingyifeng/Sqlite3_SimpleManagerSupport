@@ -26,7 +26,7 @@ public:
     JSONObject readFile();
     void createDefaultFile();
     bool isFileExists();
-    bool isSettingsFileLegal(const Settings config);
+    static bool isSettingsFileLegal(const JSONObject settings);
 };
 
 
