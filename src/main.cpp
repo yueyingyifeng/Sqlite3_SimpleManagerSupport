@@ -1,5 +1,6 @@
 #include "SettingsFileManager.h"
 #include "sqlite3.h"
+#include "Warehouse.h"
 #include "Debug.h"
 
 //模式一
@@ -79,8 +80,8 @@ void processesStep(){
 }
 
 int main() {
-    initStep();
-    processesStep();
-
+    // initStep();
+    // processesStep();
+    Warehouse w;
     return 0;
 }

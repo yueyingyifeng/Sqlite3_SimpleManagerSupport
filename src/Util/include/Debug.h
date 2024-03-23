@@ -5,12 +5,14 @@
 #ifndef MANAGERSUPPORT_DEBUG_H
 #define MANAGERSUPPORT_DEBUG_H
 #include "../Colorful.cpp"
+#include "json.h"
 
 class Debug {
 public:
     void operator()(const char* msg, bool newLine = true);
     static void err(const char* msg, bool newLine = true);
     static void msg(const char* msg, bool newLine = true);
+    static void msg(JSONObject json, bool newLine = true);
     static void war(const char* msg, bool newLine = true);
 };
 

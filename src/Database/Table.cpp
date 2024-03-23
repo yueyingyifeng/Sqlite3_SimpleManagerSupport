@@ -16,14 +16,7 @@ const char *Table::operator[](const char* key) const
     return to_string(table[key]).c_str();
 }
 
-const char *Table::serialize()
+JSONObject Table::operator()() const
 {
-    return to_string(table).c_str();
+    return table;
 }
-
-void Table::deserialize(const char *data)
-{
-    this->table = data;
-}
-
-

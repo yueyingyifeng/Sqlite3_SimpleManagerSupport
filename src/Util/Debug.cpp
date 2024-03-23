@@ -3,6 +3,7 @@
 //
 
 #include "include/Debug.h"
+#include "Debug.h"
 
 void Debug::operator()(const char *msg, bool newLine){
     cout << msg << (newLine ? "\n" : " ");
@@ -18,8 +19,14 @@ void Debug::msg(const char *msg, bool newLine) {
     cout << msg << (newLine ? "\n" : " ");
 }
 
-void Debug::war(const char *msg, bool newLine) {
+void Debug::msg(JSONObject json, bool newLine)
+{
     setTextColor("skyblue");
+    cout << json << (newLine ? "\n" : " ");
+    setTextColor();
+}
+void Debug::war(const char *msg, bool newLine) {
+    setTextColor("yellow");
     cout << msg << (newLine ? "\n" : " ");
     setTextColor();
 }
