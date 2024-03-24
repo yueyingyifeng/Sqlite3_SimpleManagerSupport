@@ -1,18 +1,16 @@
 #include "include/Warehouse.h"
 #include "Warehouse.h"
-const char* Warehouse::filed::isInUse{"isInUse"};
-const char* Warehouse::filed::orderPackage{"orderPackage"};
-const char* Warehouse::filed::dataPackage{"dataPackage"};
-const char* Warehouse::filed::errMsg{"errMsg"};
+const char* Warehouse::field::isInUse{"isInUse"};
+const char* Warehouse::field::packages{"packages"};
+
+int Warehouse::PackageCount{1};
 
 
 Warehouse::Warehouse(){
     warehouse = {
-        {filed::isInUse,false},
-        {filed::errMsg, "none"}
+        {field::isInUse,false},
+        {field::packages,{}}
     };
-    warehouse[filed::orderPackage].push_back("0");
-    warehouse[filed::dataPackage].push_back("ok");
 }
 
 const char *Warehouse::serialize()
@@ -25,7 +23,16 @@ void Warehouse::deserialize(const char *data)
     warehouse = data;
 }
 
-void Warehouse::add(Table table)
+void Warehouse::addPackage(Package package)
 {
-    warehouse[filed::dataPackage].push_back(table());
+    warehouse[field::packages].push_back(package.serialize());
+    Warehouse::PackageCount++;
+}
+
+void Warehouse::delPackageById(int id)
+{
+    if(!warehouse.contains(field::packages))
+        throw "Warehouse did not initialize";
+    for(auto it : warehouse[field::packages]);
+    //还没实现这里，这里要根据 id 遍历删除 package
 }

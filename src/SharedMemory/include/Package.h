@@ -5,23 +5,28 @@
 */
 #ifndef H_Package
 #define H_Package
-#include <string>
-
+#include "json.h"
+#include "Table.h"
 #include "Serializable.h"
+/**
+ * @brief 数据和指令包。
+ * 含有两种结构，一个是面向上层软件的指令结构，一个是面向本程序的数据结构
+ */
 class Package
     : public Serializable{
-
-        int n;
-        const char* data;
+    JSONObject data;
 public:
+    class field{
+        public:
+        static int id;
+        static const char* sqlOrder;
+        static const char* dataPackage;
+        static const char* errMsg;
+    };
 
-        char* errmsg[0xff];
-
-    explicit Package(int n, const char* data)
-        : n(n), data(data){}
-    ~Package(){
-        delete[] data;
-    }
+    explicit Package(const char* sql);
+    explicit Package(Table table);
+    ~Package(){ data.clear(); }
 
     const char* serialize() override;
 	void deserialize(const char* data) override;

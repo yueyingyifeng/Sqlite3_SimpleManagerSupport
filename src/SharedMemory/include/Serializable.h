@@ -32,7 +32,7 @@ public:
 	 * @param data 将字符串转换成类的成员变量
 	 */
 	virtual void deserialize(const char* data) = 0;
-
+	
 	template <class T>
 	static T createObject(const char* data,T (*construct)(const char* data));
 };

@@ -13,8 +13,8 @@
 
 using std::vector;
 /**
- * @brief 仓库，它应该位于共享内存当中
- * 包含了两种结构，一个是面向上层软件的指令结构，一个是面向本程序的数据结构
+ * @brief 仓库，负责将 warehouse 写入进共享内存，而 Package 则被写进 warehouse 里
+ * 
  */
 class Warehouse
     : public Serializable{
@@ -22,21 +22,22 @@ class Warehouse
          * @brief 该类所含有的键
          * 
          */
-    class filed{
+    class field{
     public:
         static const char* isInUse;
-        static const char* orderPackage;
-        static const char* dataPackage;
-        static const char* errMsg;
+        static const char* packages;
     };
-    JSONObject warehouse;
 
-    void addOrder();
+    JSONObject warehouse;
+    static int PackageCount;
 
 public:
     Warehouse();
 
-    void add(Table table);
+    void addPackage(Package package);
+    void delPackageById(int id);
+
+    
     
     const char* serialize() override;
 	void deserialize(const char* data) override;
